@@ -1,4 +1,4 @@
-use adb_rust::{ADB, transfer::TransferOptions, prelude::*};
+use adb_kit::{ADB, transfer::TransferOptions, prelude::*};
 use std::path::Path;
 
 fn main() -> ADBResult<()> {

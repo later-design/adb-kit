@@ -1,4 +1,4 @@
-use adb_rust::{ADB, prelude::*};
+use adb_kit::{ADB, prelude::*};
 
 fn main() -> ADBResult<()> {
     let adb = ADB::new(None);

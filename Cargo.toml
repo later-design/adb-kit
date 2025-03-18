@@ -1,6 +1,6 @@
 [package]
 name = "adb-kit"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 authors = ["ego <ego@laterinc.com>"]
 description = "用于与 Android Debug Bridge (ADB) 交互"

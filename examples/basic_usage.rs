@@ -1,4 +1,4 @@
-use adb_rust::{ADB, ADBConfig, prelude::*};
+use adb_kit::{ADB, ADBConfig, prelude::*};
 
 fn main() -> ADBResult<()> {
     // 创建配置
