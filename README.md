@@ -18,7 +18,7 @@ ADB Rust 是一个用于与 Android Debug Bridge (ADB) 进行交互的 Rust 库�
 
 ```toml
 [dependencies]
-adb-rust = "0.1.0"
+adb-kit = "0.1.0"
 ```
 
 ## 基本用法
