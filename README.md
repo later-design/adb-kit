@@ -1,6 +1,6 @@
-# ADB Rust
+# ADB Kit
 
-ADB Rust 是一个用于与 Android Debug Bridge (ADB) 进行交互的 Rust 库，提供了丰富的 API 以控制和管理 Android 设备。
+ADB Kit 是一个用于与 Android Debug Bridge (ADB) 进行交互的 Rust 库，提供了丰富的 API 以控制和管理 Android 设备。
 
 ## 特性
 

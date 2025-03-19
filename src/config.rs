@@ -5,13 +5,17 @@ use std::path::PathBuf;
 #[derive(Debug, Clone, Deserialize, Serialize)]
 pub struct ADBConfig {
     /// ADB 可执行文件路径
-    pub path: PathBuf,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub path: Option<PathBuf>,
     /// 重试最大次数
-    pub max_retries: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub max_retries: Option<u32>,
     /// 重试延迟（毫秒）
-    pub retry_delay: u64,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub retry_delay: Option<u64>,
     /// 操作超时（毫秒）
-    pub timeout: u64,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub timeout: Option<u64>,
     /// 日志级别
     #[serde(skip_serializing_if = "Option::is_none")]
     pub log_level: Option<String>,
@@ -19,14 +23,13 @@ pub struct ADBConfig {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub additional_args: Option<Vec<String>>,
 }
-
 impl Default for ADBConfig {
     fn default() -> Self {
-        ADBConfig {
-            path: PathBuf::from("adb"),
-            max_retries: 3,
-            retry_delay: 1000,
-            timeout: 30000, // 30秒超时
+        Self {
+            path: Some(PathBuf::from("adb")),
+            max_retries: Some(3),
+            retry_delay: Some(1000),
+            timeout: Some(30000), // 30秒超时
             log_level: None,
             additional_args: None,
         }
@@ -93,12 +96,12 @@ impl ADBConfigBuilder {
         let default = ADBConfig::default();
 
         ADBConfig {
-            path: self.path.unwrap_or(default.path),
-            max_retries: self.max_retries.unwrap_or(default.max_retries),
-            retry_delay: self.retry_delay.unwrap_or(default.retry_delay),
-            timeout: self.timeout.unwrap_or(default.timeout),
-            log_level: self.log_level,
-            additional_args: self.additional_args,
+            path: self.path.map(Some).unwrap_or(default.path),
+            max_retries: self.max_retries.map(Some).unwrap_or(default.max_retries),
+            retry_delay: self.retry_delay.map(Some).unwrap_or(default.retry_delay),
+            timeout: self.timeout.map(Some).unwrap_or(default.timeout),
+            log_level: self.log_level.or(default.log_level),
+            additional_args: self.additional_args.or(default.additional_args),
         }
     }
 }
